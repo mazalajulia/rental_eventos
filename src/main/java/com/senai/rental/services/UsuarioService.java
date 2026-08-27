@@ -52,4 +52,19 @@ public class UsuarioService {
         usuarioRepository.deleteById(id);
         return true;
     }
+
+    public Usuario login(String email, String senha) {
+
+    Usuario usuario = usuarioRepository.findByEmail(email).orElse(null);
+
+    if (usuario == null) {
+        return null;
+    }
+
+    if (!usuario.getSenha().equals(senha)) {
+        return null;
+    }
+
+    return usuario;
+}
 }

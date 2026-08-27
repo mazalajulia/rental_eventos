@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Rental Eventos - Movimentações</title>
+
+    <link rel="stylesheet" href="css/style.css">
+
+    <!-- Font Awesome -->
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    >
+
+</head>
+
+<body>
+
+    <div class="dashboard">
+
+
+        <!-- =========================
+             MENU LATERAL
+        ========================== -->
+
+        <aside class="sidebar">
+
+            <div class="logo">
+
+                <i class="fa-solid fa-boxes-stacked"></i>
+
+                <span>Rental Eventos</span>
+
+            </div>
+
+
+            <nav class="menu">
+
+                <a href="inicio.html" class="menu-item">
+
+                    <i class="fa-solid fa-house"></i>
+
+                    <span>Início</span>
+
+                </a>
+
+
+                <a href="equipamentos.html" class="menu-item">
+
+                    <i class="fa-solid fa-box"></i>
+
+                    <span>Equipamentos</span>
+
+                </a>
+
+
+                <a href="movimentacoes.html" class="menu-item active">
+
+                    <i class="fa-solid fa-arrow-right-arrow-left"></i>
+
+                    <span>Movimentações</span>
+
+                </a>
+
+
+               <a href="perfil.html" class="menu-item">
+    <i class="fa-solid fa-user"></i>
+    <span>Meu perfil</span>
+</a>
+
+            </nav>
+
+
+            <div class="sidebar-bottom">
+
+                <a href="index.html" class="menu-item logout">
+
+                    <i class="fa-solid fa-right-from-bracket"></i>
+
+                    <span>Sair</span>
+
+                </a>
+
+            </div>
+
+        </aside>
+
+
+
+        <!-- =========================
+             CONTEÚDO PRINCIPAL
+        ========================== -->
+
+        <main class="main-content">
+
+
+            <!-- TOPO -->
+
+            <header class="topbar">
+
+                <div>
+
+                    <h2>Movimentações</h2>
+
+                    <p>
+                        Controle a entrada e saída dos equipamentos.
+                    </p>
+
+                </div>
+
+
+                <div class="topbar-right">
+
+
+                    <!-- BUSCA -->
+
+                    <div class="search-box">
+
+                        <i class="fa-solid fa-magnifying-glass"></i>
+
+                        <input
+                            type="text"
+                            id="buscarMovimentacao"
+                            placeholder="Pesquisar..."
+                        >
+
+                    </div>
+
+
+                    <!-- PERFIL -->
+
+                    <div class="profile">
+
+                        <div class="profile-icon">
+
+                            <i class="fa-solid fa-user"></i>
+
+                        </div>
+
+
+                        <div class="profile-info">
+
+                            <strong>Usuário</strong>
+
+                            <span>Administrador</span>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </header>
+
+
+
+            <!-- =========================
+                 AÇÕES
+            ========================== -->
+
+            <section class="page-actions">
+
+                <div>
+
+                    <h3>Registro de movimentações</h3>
+
+                    <p>
+                        Consulte as movimentações realizadas no sistema.
+                    </p>
+
+                </div>
+
+
+                <button
+                    class="add-button"
+                    onclick="abrirMovimentacao()"
+                >
+
+                    <i class="fa-solid fa-plus"></i>
+
+                    Nova movimentação
+
+                </button>
+
+            </section>
+
+
+
+            <!-- =========================
+                 TABELA
+            ========================== -->
+
+            <section class="table-container">
+
+                <table>
+
+                    <thead>
+
+                        <tr>
+
+                            <th>ID</th>
+
+                            <th>Usuário</th>
+
+                            <th>Equipamento</th>
+
+                            <th>Data</th>
+
+                            <th>Tipo</th>
+
+                            <th>Quantidade</th>
+
+                        </tr>
+
+                    </thead>
+
+
+                    <tbody id="listaMovimentacoes">
+
+
+                        <!--
+
+                            Futuramente os dados
+                            serão carregados pela API.
+
+                        -->
+
+
+                        <tr>
+
+                            <td colspan="6" class="empty-table">
+
+                                <i class="fa-solid fa-arrow-right-arrow-left"></i>
+
+                                <p>
+                                    Nenhuma movimentação registrada.
+                                </p>
+
+                                <span>
+                                    Clique em "Nova movimentação" para registrar.
+                                </span>
+
+                            </td>
+
+                        </tr>
+
+
+                    </tbody>
+
+                </table>
+
+            </section>
+
+
+
+            <!-- =========================
+                 MODAL
+            ========================== -->
+
+            <section
+                class="modal"
+                id="modalMovimentacao"
+            >
+
+
+                <div class="modal-content">
+
+
+                    <!-- CABEÇALHO -->
+
+                    <div class="modal-header">
+
+                        <div>
+
+                            <h2>Nova movimentação</h2>
+
+                            <p>
+                                Registre a movimentação de um equipamento.
+                            </p>
+
+                        </div>
+
+
+                        <button
+                            class="close-button"
+                            type="button"
+                            onclick="fecharMovimentacao()"
+                        >
+
+                            <i class="fa-solid fa-xmark"></i>
+
+                        </button>
+
+                    </div>
+
+
+
+                    <!-- FORMULÁRIO -->
+
+                    <form id="movimentacaoForm">
+
+
+                        <div class="form-grid">
+
+
+                            <!-- USUÁRIO -->
+
+                            <div class="form-group">
+
+                                <label for="usuario">
+
+                                    Usuário
+
+                                </label>
+
+
+                                <input
+                                    type="number"
+                                    id="usuario"
+                                    placeholder="ID do usuário"
+                                    required
+                                >
+
+                            </div>
+
+
+
+                            <!-- EQUIPAMENTO -->
+
+                            <div class="form-group">
+
+                                <label for="equipamento">
+
+                                    Equipamento
+
+                                </label>
+
+
+                                <input
+                                    type="number"
+                                    id="equipamento"
+                                    placeholder="ID do equipamento"
+                                    required
+                                >
+
+                            </div>
+
+
+
+                            <!-- DATA -->
+
+                            <div class="form-group">
+
+                                <label for="dataMovimentacao">
+
+                                    Data da movimentação
+
+                                </label>
+
+
+                                <input
+                                    type="date"
+                                    id="dataMovimentacao"
+                                    required
+                                >
+
+                            </div>
+
+
+
+                            <!-- TIPO -->
+
+                            <div class="form-group">
+
+                                <label for="tipo">
+
+                                    Tipo
+
+                                </label>
+
+
+                                <select
+                                    id="tipo"
+                                    required
+                                >
+
+                                    <option value="">
+                                        Selecione o tipo
+                                    </option>
+
+                                    <option value="ENTRADA">
+                                        Entrada
+                                    </option>
+
+                                    <option value="SAIDA">
+                                        Saída
+                                    </option>
+
+                                </select>
+
+                            </div>
+
+
+
+                            <!-- QUANTIDADE -->
+
+                            <div class="form-group">
+
+                                <label for="quantidade">
+
+                                    Quantidade
+
+                                </label>
+
+
+                                <input
+                                    type="number"
+                                    id="quantidade"
+                                    placeholder="Quantidade"
+                                    min="1"
+                                    required
+                                >
+
+                            </div>
+
+
+                        </div>
+
+
+
+                        <!-- BOTÕES -->
+
+                        <div class="modal-actions">
+
+
+                            <button
+                                type="button"
+                                class="cancel-button"
+                                onclick="fecharMovimentacao()"
+                            >
+
+                                Cancelar
+
+                            </button>
+
+
+                            <button
+                                type="submit"
+                                class="save-button"
+                            >
+
+                                <i class="fa-solid fa-check"></i>
+
+                                Registrar
+
+                            </button>
+
+
+                        </div>
+
+
+                    </form>
+
+                </div>
+
+            </section>
+
+
+        </main>
+
+    </div>
+
+
+
+    <!-- =========================
+         JAVASCRIPT
+    ========================== -->
+
+    <script>
+
+        function abrirMovimentacao() {
+
+            document
+                .getElementById("modalMovimentacao")
+                .classList.add("show");
+
+        }
+
+
+        function fecharMovimentacao() {
+
+            document
+                .getElementById("modalMovimentacao")
+                .classList.remove("show");
+
+        }
+
+
+        document
+            .getElementById("movimentacaoForm")
+            .addEventListener("submit", function(event) {
+
+                event.preventDefault();
+
+                alert("Movimentação será conectada ao backend em breve!");
+
+            });
+
+    </script>
+
+
+</body>
+
+</html>

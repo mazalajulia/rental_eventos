@@ -35,21 +35,24 @@ public class MovimentacaoService {
 
         if (movimentacao.getTipo().equalsIgnoreCase("saida")) {
 
-            if (movimentacao.getQuantidade() > equipamento.getQtdDisponivel()) {
+            if (movimentacao.getQuantidade() > equipamento.getQuantidadeDisponivel()) {
                 return null;
             }
 
-            equipamento.setQtdDisponivel(
-                    equipamento.getQtdDisponivel()
+            equipamento.setQuantidadeDisponivel(
+                    equipamento.getQuantidadeDisponivel()
                             - movimentacao.getQuantidade()
             );
 
         } else if (movimentacao.getTipo().equalsIgnoreCase("entrada")) {
 
-            equipamento.setQtdDisponivel(
-                    equipamento.getQtdDisponivel()
+            equipamento.setQuantidadeDisponivel(
+                    equipamento.getQuantidadeDisponivel()
                             + movimentacao.getQuantidade()
             );
+
+        } else {
+            return null;
         }
 
         equipamentoRepository.save(equipamento);

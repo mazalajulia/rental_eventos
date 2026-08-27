@@ -12,11 +12,10 @@ import jakarta.persistence.Table;
 @Table(name="Equipamento") 
 
 public class Equipamento{ 
-    @Id 
-    @GeneratedValue(strategy = GenerationType.IDENTITY) 
-
-    @Column(name="id") 
-    private Integer id; 
+   @Id
+@GeneratedValue(strategy = GenerationType.IDENTITY)
+@Column(name = "id_equipamento")
+private Integer idEquipamento;
 
     @Column(name="nome") 
     private String nome; 
@@ -45,18 +44,19 @@ public class Equipamento{
     @Column(name="cor") 
     private String cor; 
 
-    @Column(name="qtd_disponivel") 
-    private Integer qtdDisponivel; 
+    @Column(name = "quantidade_disponivel")
+    private Integer quantidadeDisponivel;
 
-    @Column(name="qtd_minima") 
-    private Integer qtdMinima;
+    @Column(name = "quantidade_minima")
+    private Integer quantidadeMinima;
 
     public Equipamento() {
     }
 
-    public Equipamento(Integer id, String nome, String marca, String modelo, String categoria, String potencia,
-            String material, Double peso, String dimensoes, String cor, Integer qtdDisponivel, Integer qtdMinima) {
-        this.id = id;
+    public Equipamento(Integer idEquipamento, String nome, String marca, String modelo, String categoria,
+            String potencia, String material, Double peso, String dimensoes, String cor, Integer quantidadeDisponivel,
+            Integer quantidadeMinima) {
+        this.idEquipamento = idEquipamento;
         this.nome = nome;
         this.marca = marca;
         this.modelo = modelo;
@@ -66,16 +66,16 @@ public class Equipamento{
         this.peso = peso;
         this.dimensoes = dimensoes;
         this.cor = cor;
-        this.qtdDisponivel = qtdDisponivel;
-        this.qtdMinima = qtdMinima;
+        this.quantidadeDisponivel = quantidadeDisponivel;
+        this.quantidadeMinima = quantidadeMinima;
     }
 
-    public Integer getId() {
-        return id;
+    public Integer getIdEquipamento() {
+        return idEquipamento;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setIdEquipamento(Integer idEquipamento) {
+        this.idEquipamento = idEquipamento;
     }
 
     public String getNome() {
@@ -150,20 +150,20 @@ public class Equipamento{
         this.cor = cor;
     }
 
-    public Integer getQtdDisponivel() {
-        return qtdDisponivel;
+    public Integer getQuantidadeDisponivel() {
+        return quantidadeDisponivel;
     }
 
-    public void setQtdDisponivel(Integer qtdDisponivel) {
-        this.qtdDisponivel = qtdDisponivel;
+    public void setQuantidadeDisponivel(Integer quantidadeDisponivel) {
+        this.quantidadeDisponivel = quantidadeDisponivel;
     }
 
-    public Integer getQtdMinima() {
-        return qtdMinima;
+    public Integer getQuantidadeMinima() {
+        return quantidadeMinima;
     }
 
-    public void setQtdMinima(Integer qtdMinima) {
-        this.qtdMinima = qtdMinima;
+    public void setQuantidadeMinima(Integer quantidadeMinima) {
+        this.quantidadeMinima = quantidadeMinima;
     }
 
     

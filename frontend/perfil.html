@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Rental Eventos - Meu Perfil</title>
+
+    <link rel="stylesheet" href="css/style.css">
+
+    <!-- Font Awesome -->
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    >
+
+</head>
+
+<body>
+
+    <div class="dashboard">
+
+
+        <!-- =========================
+             MENU LATERAL
+        ========================== -->
+
+        <aside class="sidebar">
+
+            <div class="logo">
+
+                <i class="fa-solid fa-boxes-stacked"></i>
+
+                <span>Rental Eventos</span>
+
+            </div>
+
+
+            <nav class="menu">
+
+                <a href="inicio.html" class="menu-item">
+
+                    <i class="fa-solid fa-house"></i>
+
+                    <span>Início</span>
+
+                </a>
+
+
+                <a href="equipamentos.html" class="menu-item">
+
+                    <i class="fa-solid fa-box"></i>
+
+                    <span>Equipamentos</span>
+
+                </a>
+
+
+                <a href="movimentacoes.html" class="menu-item">
+
+                    <i class="fa-solid fa-arrow-right-arrow-left"></i>
+
+                    <span>Movimentações</span>
+
+                </a>
+
+
+                <a href="perfil.html" class="menu-item active">
+
+                    <i class="fa-solid fa-user"></i>
+
+                    <span>Meu perfil</span>
+
+                </a>
+
+            </nav>
+
+
+            <div class="sidebar-bottom">
+
+                <a href="index.html" class="menu-item logout">
+
+                    <i class="fa-solid fa-right-from-bracket"></i>
+
+                    <span>Sair</span>
+
+                </a>
+
+            </div>
+
+        </aside>
+
+
+
+        <!-- =========================
+             CONTEÚDO PRINCIPAL
+        ========================== -->
+
+        <main class="main-content">
+
+
+            <!-- TOPO -->
+
+            <header class="topbar">
+
+                <div>
+
+                    <h2>Meu perfil</h2>
+
+                    <p>
+                        Visualize e gerencie seus dados pessoais.
+                    </p>
+
+                </div>
+
+
+                <div class="topbar-right">
+
+
+                    <!-- BUSCA -->
+
+                    <div class="search-box">
+
+                        <i class="fa-solid fa-magnifying-glass"></i>
+
+                        <input
+                            type="text"
+                            placeholder="Pesquisar..."
+                        >
+
+                    </div>
+
+
+                    <!-- PERFIL -->
+
+                    <div class="profile">
+
+                        <div class="profile-icon">
+
+                            <i class="fa-solid fa-user"></i>
+
+                        </div>
+
+
+                        <div class="profile-info">
+
+                            <strong>Usuário</strong>
+
+                            <span>Administrador</span>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </header>
+
+
+
+            <!-- =========================
+                 PERFIL
+            ========================== -->
+
+            <section class="profile-page">
+
+
+                <!-- CARTÃO DO PERFIL -->
+
+                <div class="profile-card">
+
+
+                    <div class="profile-avatar">
+
+                        <i class="fa-solid fa-user"></i>
+
+                    </div>
+
+
+                    <h2>Usuário</h2>
+
+                    <p class="profile-role">
+                        Administrador
+                    </p>
+
+
+                    <button
+                        class="edit-profile-button"
+                        onclick="editarPerfil()"
+                    >
+
+                        <i class="fa-solid fa-pen"></i>
+
+                        Editar perfil
+
+                    </button>
+
+                </div>
+
+
+
+                <!-- DADOS -->
+
+                <div class="profile-data">
+
+
+                    <div class="profile-data-header">
+
+                        <div>
+
+                            <h3>Dados pessoais</h3>
+
+                            <p>
+                                Informações da sua conta.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <div class="profile-fields">
+
+
+                        <div class="profile-field">
+
+                            <span>
+
+                                <i class="fa-solid fa-user"></i>
+
+                                Nome
+
+                            </span>
+
+                            <strong id="nomeUsuario">
+                                Usuário
+                            </strong>
+
+                        </div>
+
+
+                        <div class="profile-field">
+
+                            <span>
+
+                                <i class="fa-solid fa-envelope"></i>
+
+                                E-mail
+
+                            </span>
+
+                            <strong id="emailUsuario">
+                                usuario@email.com
+                            </strong>
+
+                        </div>
+
+
+                        <div class="profile-field">
+
+                            <span>
+
+                                <i class="fa-solid fa-shield-halved"></i>
+
+                                Tipo de usuário
+
+                            </span>
+
+                            <strong>
+                                Administrador
+                            </strong>
+
+                        </div>
+
+
+                        <div class="profile-field">
+
+                            <span>
+
+                                <i class="fa-solid fa-calendar"></i>
+
+                                Conta criada em
+
+                            </span>
+
+                            <strong>
+                                --/--/----
+                            </strong>
+
+                        </div>
+
+
+                    </div>
+
+
+                </div>
+
+            </section>
+
+
+
+            <!-- =========================
+                 ALTERAR SENHA
+            ========================== -->
+
+            <section class="password-card">
+
+                <div>
+
+                    <h3>
+                        Segurança
+                    </h3>
+
+                    <p>
+                        Altere sua senha para manter sua conta segura.
+                    </p>
+
+                </div>
+
+
+                <button
+                    class="password-button"
+                    onclick="alterarSenha()"
+                >
+
+                    <i class="fa-solid fa-lock"></i>
+
+                    Alterar senha
+
+                </button>
+
+            </section>
+
+
+        </main>
+
+    </div>
+
+
+
+    <!-- =========================
+         JAVASCRIPT
+    ========================== -->
+
+    <script>
+
+        function editarPerfil() {
+
+            alert("A edição do perfil será conectada ao backend em breve.");
+
+        }
+
+
+        function alterarSenha() {
+
+            alert("A alteração de senha será conectada ao backend em breve.");
+
+        }
+
+    </script>
+
+
+</body>
+
+</html>

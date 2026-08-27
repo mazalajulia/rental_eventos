@@ -45,8 +45,8 @@ public class EquipamentoService {
         existente.setPeso(equipamento.getPeso());
         existente.setDimensoes(equipamento.getDimensoes());
         existente.setCor(equipamento.getCor());
-        existente.setQtdDisponivel(equipamento.getQtdDisponivel());
-        existente.setQtdMinima(equipamento.getQtdMinima());
+        existente.setQuantidadeDisponivel(equipamento.getQuantidadeDisponivel());
+        existente.setQuantidadeMinima(equipamento.getQuantidadeMinima());
 
         return equipamentoRepository.save(existente);
     }
@@ -58,6 +58,7 @@ public class EquipamentoService {
         }
 
         equipamentoRepository.deleteById(id);
+
         return true;
     }
 }

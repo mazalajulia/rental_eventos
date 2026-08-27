@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Rental Eventos - Equipamentos</title>
+
+    <link rel="stylesheet" href="css/style.css">
+
+    <!-- Font Awesome -->
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    >
+</head>
+
+<body>
+
+    <div class="dashboard">
+
+        <!-- MENU LATERAL -->
+        <aside class="sidebar">
+
+            <div class="logo">
+                <i class="fa-solid fa-boxes-stacked"></i>
+                <span>Rental Eventos</span>
+            </div>
+
+            <nav class="menu">
+
+                <a href="inicio.html" class="menu-item">
+                    <i class="fa-solid fa-house"></i>
+                    <span>Início</span>
+                </a>
+
+                <a href="equipamentos.html" class="menu-item active">
+                    <i class="fa-solid fa-box"></i>
+                    <span>Equipamentos</span>
+                </a>
+
+                <a href="movimentacoes.html" class="menu-item">
+                    <i class="fa-solid fa-arrow-right-arrow-left"></i>
+                    <span>Movimentações</span>
+                </a>
+
+                <a href="perfil.html" class="menu-item">
+    <i class="fa-solid fa-user"></i>
+    <span>Meu perfil</span>
+</a>
+
+            </nav>
+
+            <div class="sidebar-bottom">
+
+                <a href="index.html" class="menu-item logout">
+                    <i class="fa-solid fa-right-from-bracket"></i>
+                    <span>Sair</span>
+                </a>
+
+            </div>
+
+        </aside>
+
+
+        <!-- CONTEÚDO PRINCIPAL -->
+        <main class="main-content">
+
+            <!-- TOPO -->
+            <header class="topbar">
+
+                <div>
+                    <h2>Equipamentos</h2>
+
+                    <p>
+                        Gerencie os equipamentos disponíveis para os eventos.
+                    </p>
+                </div>
+
+                <div class="topbar-right">
+
+                    <div class="search-box">
+
+                        <i class="fa-solid fa-magnifying-glass"></i>
+
+                        <input
+                            type="text"
+                            id="buscarEquipamento"
+                            placeholder="Pesquisar equipamento..."
+                        >
+
+                    </div>
+
+                    <div class="profile">
+
+                        <div class="profile-icon">
+                            <i class="fa-solid fa-user"></i>
+                        </div>
+
+                        <div class="profile-info">
+                            <strong>Usuário</strong>
+                            <span>Administrador</span>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </header>
+
+
+            <!-- ÁREA DE AÇÕES -->
+            <section class="page-actions">
+
+                <div>
+                    <h3>Lista de equipamentos</h3>
+
+                    <p>
+                        Consulte e gerencie os equipamentos cadastrados.
+                    </p>
+                </div>
+
+                <button class="add-button" onclick="abrirFormulario()">
+
+                    <i class="fa-solid fa-plus"></i>
+
+                    Novo equipamento
+
+                </button>
+
+            </section>
+
+
+            <!-- TABELA -->
+            <section class="table-container">
+
+                <table>
+
+                    <thead>
+
+                        <tr>
+
+                            <th>Nome</th>
+
+                            <th>Marca</th>
+
+                            <th>Modelo</th>
+
+                            <th>Categoria</th>
+
+                            <th>Quantidade</th>
+
+                            <th>Status</th>
+
+                            <th>Ações</th>
+
+                        </tr>
+
+                    </thead>
+
+                    <tbody id="listaEquipamentos">
+
+                        <!--
+                            Os equipamentos serão carregados
+                            aqui pelo JavaScript futuramente.
+                        -->
+
+                        <tr>
+
+                            <td colspan="7" class="empty-table">
+
+                                <i class="fa-solid fa-box-open"></i>
+
+                                <p>Nenhum equipamento cadastrado.</p>
+
+                                <span>
+                                    Clique em "Novo equipamento" para cadastrar.
+                                </span>
+
+                            </td>
+
+                        </tr>
+
+                    </tbody>
+
+                </table>
+
+            </section>
+
+
+            <!-- FORMULÁRIO DE CADASTRO -->
+            <section
+                class="modal"
+                id="modalEquipamento"
+            >
+
+                <div class="modal-content">
+
+                    <div class="modal-header">
+
+                        <div>
+                            <h2>Novo equipamento</h2>
+
+                            <p>
+                                Preencha os dados do equipamento.
+                            </p>
+                        </div>
+
+                        <button
+                            class="close-button"
+                            onclick="fecharFormulario()"
+                            type="button"
+                        >
+                            <i class="fa-solid fa-xmark"></i>
+                        </button>
+
+                    </div>
+
+
+                    <form id="equipamentoForm">
+
+                        <div class="form-grid">
+
+                            <div class="form-group">
+
+                                <label for="nome">
+                                    Nome
+                                </label>
+
+                                <input
+                                    type="text"
+                                    id="nome"
+                                    placeholder="Ex: Caixa de som"
+                                    required
+                                >
+
+                            </div>
+
+
+                            <div class="form-group">
+
+                                <label for="marca">
+                                    Marca
+                                </label>
+
+                                <input
+                                    type="text"
+                                    id="marca"
+                                    placeholder="Ex: JBL"
+                                >
+
+                            </div>
+
+
+                            <div class="form-group">
+
+                                <label for="modelo">
+                                    Modelo
+                                </label>
+
+                                <input
+                                    type="text"
+                                    id="modelo"
+                                    placeholder="Ex: PartyBox 310"
+                                >
+
+                            </div>
+
+
+                            <div class="form-group">
+
+                                <label for="categoria">
+                                    Categoria
+                                </label>
+
+                                <input
+                                    type="text"
+                                    id="categoria"
+                                    placeholder="Ex: Áudio"
+                                >
+
+                            </div>
+
+
+                            <div class="form-group">
+
+                                <label for="potencia">
+                                    Potência
+                                </label>
+
+                                <input
+                                    type="number"
+                                    id="potencia"
+                                    placeholder="Ex: 240"
+                                >
+
+                            </div>
+
+
+                            <div class="form-group">
+
+                                <label for="material">
+                                    Material
+                                </label>
+
+                                <input
+                                    type="text"
+                                    id="material"
+                                    placeholder="Ex: Plástico"
+                                >
+
+                            </div>
+
+
+                            <div class="form-group">
+
+                                <label for="peso">
+                                    Peso
+                                </label>
+
+                                <input
+                                    type="number"
+                                    id="peso"
+                                    placeholder="Ex: 15"
+                                    step="0.01"
+                                >
+
+                            </div>
+
+
+                            <div class="form-group">
+
+                                <label for="dimensoes">
+                                    Dimensões
+                                </label>
+
+                                <input
+                                    type="text"
+                                    id="dimensoes"
+                                    placeholder="Ex: 30x40x60 cm"
+                                >
+
+                            </div>
+
+
+                            <div class="form-group">
+
+                                <label for="cor">
+                                    Cor
+                                </label>
+
+                                <input
+                                    type="text"
+                                    id="cor"
+                                    placeholder="Ex: Preto"
+                                >
+
+                            </div>
+
+
+                            <div class="form-group">
+
+                                <label for="qtdDisponivel">
+                                    Quantidade disponível
+                                </label>
+
+                                <input
+                                    type="number"
+                                    id="qtdDisponivel"
+                                    placeholder="Ex: 10"
+                                    min="0"
+                                    required
+                                >
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="modal-actions">
+
+                            <button
+                                type="button"
+                                class="cancel-button"
+                                onclick="fecharFormulario()"
+                            >
+                                Cancelar
+                            </button>
+
+                            <button
+                                type="submit"
+                                class="save-button"
+                            >
+                                <i class="fa-solid fa-check"></i>
+                                Cadastrar
+                            </button>
+
+                        </div>
+
+                    </form>
+
+                </div>
+
+            </section>
+
+        </main>
+
+    </div>
+
+
+    <!-- JAVASCRIPT DA PÁGINA -->
+
+    <script>
+
+        function abrirFormulario() {
+
+            document
+                .getElementById("modalEquipamento")
+                .classList.add("show");
+
+        }
+
+
+        function fecharFormulario() {
+
+            document
+                .getElementById("modalEquipamento")
+                .classList.remove("show");
+
+        }
+
+
+        document
+            .getElementById("equipamentoForm")
+            .addEventListener("submit", function(event) {
+
+                event.preventDefault();
+
+                alert("Cadastro será conectado ao backend em breve!");
+
+            });
+
+    </script>
+
+</body>
+
+</html>
