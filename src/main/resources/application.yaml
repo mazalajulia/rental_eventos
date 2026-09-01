@@ -1,6 +1,6 @@
 spring:
   datasource:
-    url: jdbc:postgresql://localhost:5432/rental_db
+    url: jdbc:postgresql://localhost:5433/postgres
     username: postgres
     password: ALUNO
 
