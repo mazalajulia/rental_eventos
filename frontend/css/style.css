@@ -117,6 +117,7 @@ button:hover {
     display: flex;
     flex-direction: column;
     padding: 25px 15px;
+    flex-shrink: 0;
 }
 
 .logo {
@@ -174,19 +175,25 @@ button:hover {
 
 .logout {
     color: #ccc;
+    text-decoration: none;
 }
 
 
-/* CONTEÚDO */
+/* =========================================
+   CONTEÚDO
+   ========================================= */
 
 .main-content {
     flex: 1;
     padding: 30px 40px;
     overflow-x: hidden;
+    min-width: 0;
 }
 
 
-/* TOPO */
+/* =========================================
+   TOPO
+   ========================================= */
 
 .topbar {
     display: flex;
@@ -273,7 +280,9 @@ button:hover {
 }
 
 
-/* BANNER */
+/* =========================================
+   BANNER
+   ========================================= */
 
 .welcome-card {
     background-color: #222;
@@ -331,7 +340,9 @@ button:hover {
 }
 
 
-/* CARDS */
+/* =========================================
+   CARDS
+   ========================================= */
 
 .cards {
     display: grid;
@@ -383,7 +394,9 @@ button:hover {
 }
 
 
-/* ACESSO RÁPIDO */
+/* =========================================
+   ACESSO RÁPIDO
+   ========================================= */
 
 .quick-access {
     margin-bottom: 30px;
@@ -459,79 +472,26 @@ button:hover {
 
 
 /* =========================================
-   RESPONSIVIDADE
-   ========================================= */
-
-@media (max-width: 1000px) {
-
-    .sidebar {
-        width: 210px;
-    }
-
-    .main-content {
-        padding: 25px;
-    }
-
-    .cards,
-    .quick-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .topbar-right {
-        gap: 10px;
-    }
-
-    .search-box {
-        width: 180px;
-    }
-}
-
-
-@media (max-width: 700px) {
-
-    .sidebar {
-        width: 70px;
-        padding: 20px 10px;
-    }
-
-    .logo span,
-    .menu-item span,
-    .profile-info {
-        display: none;
-    }
-
-    .logo {
-        justify-content: center;
-        padding: 0;
-    }
-
-    .menu-item {
-        justify-content: center;
-    }
-
-    .main-content {
-        padding: 20px;
-    }
-
-    .topbar {
-        align-items: flex-start;
-    }
-
-    .topbar-right {
-        display: none;
-    }
-
-    .welcome-card {
-        padding: 25px;
-    }
-
-    .welcome-icon {
-        display: none;
-    }
-
-    /* =========================================
    EQUIPAMENTOS
    ========================================= */
+
+.page-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+}
+
+.page-header h1 {
+    font-size: 28px;
+    color: #222;
+    margin-bottom: 5px;
+}
+
+.page-header p {
+    color: #777;
+    font-size: 14px;
+}
 
 .page-actions {
     display: flex;
@@ -564,6 +524,51 @@ button:hover {
 }
 
 
+/* BOTÃO PRINCIPAL */
+
+.btn-primary {
+    width: auto;
+    padding: 12px 20px;
+    background-color: #222;
+    color: white;
+    border-radius: 7px;
+}
+
+.btn-primary:hover {
+    background-color: #444;
+}
+
+
+/* BOTÃO SECUNDÁRIO */
+
+.btn-secondary {
+    width: auto;
+    padding: 12px 20px;
+    background-color: #eee;
+    color: #333;
+}
+
+.btn-secondary:hover {
+    background-color: #ddd;
+}
+
+
+/* BOTÃO FECHAR */
+
+.btn-fechar {
+    width: 40px;
+    height: 40px;
+    padding: 0;
+    background-color: transparent;
+    color: #555;
+    font-size: 28px;
+}
+
+.btn-fechar:hover {
+    background-color: #eee;
+}
+
+
 /* TABELA */
 
 .table-container {
@@ -576,6 +581,7 @@ button:hover {
 table {
     width: 100%;
     border-collapse: collapse;
+    min-width: 800px;
 }
 
 thead {
@@ -589,6 +595,7 @@ th {
     color: #555;
     font-weight: bold;
     border-bottom: 1px solid #eee;
+    white-space: nowrap;
 }
 
 td {
@@ -599,6 +606,20 @@ td {
 
 tbody tr:hover {
     background-color: #fafafa;
+}
+
+
+/* BOTÃO EXCLUIR */
+
+.btn-excluir {
+    width: auto;
+    padding: 8px 12px;
+    background-color: #222;
+    font-size: 13px;
+}
+
+.btn-excluir:hover {
+    background-color: #444;
 }
 
 
@@ -626,7 +647,9 @@ tbody tr:hover {
 }
 
 
-/* MODAL */
+/* =========================================
+   MODAL
+   ========================================= */
 
 .modal {
     display: none;
@@ -684,7 +707,9 @@ tbody tr:hover {
 }
 
 
-/* CAMPOS DO FORMULÁRIO */
+/* =========================================
+   CAMPOS DO FORMULÁRIO
+   ========================================= */
 
 .form-grid {
     display: grid;
@@ -700,8 +725,24 @@ tbody tr:hover {
     margin-top: 7px;
 }
 
+.form-group select {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 15px;
+    outline: none;
+    background-color: white;
+}
 
-/* BOTÕES DO MODAL */
+.form-group select:focus {
+    border-color: #333;
+}
+
+
+/* =========================================
+   BOTÕES DO MODAL
+   ========================================= */
 
 .modal-actions {
     display: flex;
@@ -733,38 +774,9 @@ tbody tr:hover {
 }
 
 
-/* RESPONSIVIDADE */
-
-@media (max-width: 800px) {
-
-    .page-actions {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 15px;
-    }
-
-    .form-grid {
-        grid-template-columns: 1fr;
-    }
-
-}
-
-/* SELECT DO FORMULÁRIO */
-
-.form-group select {
-    width: 100%;
-    padding: 12px;
-    border: 1px solid #ccc;
-    border-radius: 6px;
-    font-size: 15px;
-    outline: none;
-    background-color: white;
-}
-
-.form-group select:focus {
-    border-color: #333;
-}
-/* PERFIL */
+/* =========================================
+   PERFIL
+   ========================================= */
 
 .profile-page {
     display: grid;
@@ -895,7 +907,48 @@ tbody tr:hover {
     background-color: #ddd;
 }
 
+
+/* =========================================
+   RESPONSIVIDADE
+   ========================================= */
+
+@media (max-width: 1000px) {
+
+    .sidebar {
+        width: 210px;
+    }
+
+    .main-content {
+        padding: 25px;
+    }
+
+    .cards,
+    .quick-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .topbar-right {
+        gap: 10px;
+    }
+
+    .search-box {
+        width: 180px;
+    }
+}
+
+
 @media (max-width: 800px) {
+
+    .page-actions,
+    .page-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+    }
+
+    .form-grid {
+        grid-template-columns: 1fr;
+    }
 
     .profile-page {
         grid-template-columns: 1fr;
@@ -912,5 +965,52 @@ tbody tr:hover {
     }
 
 }
+
+
+@media (max-width: 700px) {
+
+    .sidebar {
+        width: 70px;
+        padding: 20px 10px;
+    }
+
+    .logo span,
+    .menu-item span,
+    .profile-info {
+        display: none;
+    }
+
+    .logo {
+        justify-content: center;
+        padding: 0;
+    }
+
+    .menu-item {
+        justify-content: center;
+    }
+
+    .main-content {
+        padding: 20px;
+    }
+
+    .topbar {
+        align-items: flex-start;
+    }
+
+    .topbar-right {
+        display: none;
+    }
+
+    .welcome-card {
+        padding: 25px;
+    }
+
+    .welcome-icon {
+        display: none;
+    }
+
+    .page-header {
+        align-items: flex-start;
+    }
 
 }

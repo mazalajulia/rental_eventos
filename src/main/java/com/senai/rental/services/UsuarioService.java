@@ -2,6 +2,7 @@ package com.senai.rental.services;
 
 import java.util.List;
 
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.senai.rental.models.Usuario;
@@ -11,12 +12,19 @@ import com.senai.rental.repositories.UsuarioRepository;
 public class UsuarioService {
 
     private final UsuarioRepository usuarioRepository;
+    private final PasswordEncoder passwordEncoder;
 
-    public UsuarioService(UsuarioRepository usuarioRepository) {
+    public UsuarioService(UsuarioRepository usuarioRepository,
+                          PasswordEncoder passwordEncoder) {
+
         this.usuarioRepository = usuarioRepository;
+        this.passwordEncoder = passwordEncoder;
     }
 
     public Usuario salvar(Usuario usuario) {
+
+        usuario.setSenha(passwordEncoder.encode(usuario.getSenha()));
+
         return usuarioRepository.save(usuario);
     }
 
@@ -38,7 +46,10 @@ public class UsuarioService {
 
         existente.setNome(usuario.getNome());
         existente.setEmail(usuario.getEmail());
-        existente.setSenha(usuario.getSenha());
+
+        if (usuario.getSenha() != null && !usuario.getSenha().isBlank()) {
+            existente.setSenha(passwordEncoder.encode(usuario.getSenha()));
+        }
 
         return usuarioRepository.save(existente);
     }
@@ -55,16 +66,16 @@ public class UsuarioService {
 
     public Usuario login(String email, String senha) {
 
-    Usuario usuario = usuarioRepository.findByEmail(email).orElse(null);
+        Usuario usuario = usuarioRepository.findByEmail(email).orElse(null);
 
-    if (usuario == null) {
-        return null;
+        if (usuario == null) {
+            return null;
+        }
+
+        if (!passwordEncoder.matches(senha, usuario.getSenha())) {
+            return null;
+        }
+
+        return usuario;
     }
-
-    if (!usuario.getSenha().equals(senha)) {
-        return null;
-    }
-
-    return usuario;
-}
 }
