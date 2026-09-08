@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html lang="pt-BR">
 
 <head>
@@ -12,6 +13,7 @@
     <link rel="stylesheet" href="css/style.css">
 
     <!-- Font Awesome -->
+
     <link
         rel="stylesheet"
         href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
@@ -68,10 +70,13 @@
                 </a>
 
 
-               <a href="perfil.html" class="menu-item">
-    <i class="fa-solid fa-user"></i>
-    <span>Meu perfil</span>
-</a>
+                <a href="perfil.html" class="menu-item">
+
+                    <i class="fa-solid fa-user"></i>
+
+                    <span>Meu perfil</span>
+
+                </a>
 
             </nav>
 
@@ -223,13 +228,6 @@
                     <tbody id="listaMovimentacoes">
 
 
-                        <!--
-
-                            Futuramente os dados
-                            serão carregados pela API.
-
-                        -->
-
 
                         <tr>
 
@@ -313,9 +311,7 @@
                             <div class="form-group">
 
                                 <label for="usuario">
-
                                     Usuário
-
                                 </label>
 
 
@@ -335,9 +331,7 @@
                             <div class="form-group">
 
                                 <label for="equipamento">
-
                                     Equipamento
-
                                 </label>
 
 
@@ -352,14 +346,11 @@
 
 
 
-                            <!-- DATA -->
 
                             <div class="form-group">
 
                                 <label for="dataMovimentacao">
-
                                     Data da movimentação
-
                                 </label>
 
 
@@ -373,14 +364,10 @@
 
 
 
-                            <!-- TIPO -->
-
                             <div class="form-group">
 
                                 <label for="tipo">
-
                                     Tipo
-
                                 </label>
 
 
@@ -393,11 +380,11 @@
                                         Selecione o tipo
                                     </option>
 
-                                    <option value="ENTRADA">
+                                    <option value="entrada">
                                         Entrada
                                     </option>
 
-                                    <option value="SAIDA">
+                                    <option value="saida">
                                         Saída
                                     </option>
 
@@ -407,14 +394,10 @@
 
 
 
-                            <!-- QUANTIDADE -->
-
                             <div class="form-group">
 
                                 <label for="quantidade">
-
                                     Quantidade
-
                                 </label>
 
 
@@ -503,11 +486,145 @@
 
         document
             .getElementById("movimentacaoForm")
-            .addEventListener("submit", function(event) {
+            .addEventListener("submit", async function(event) {
 
                 event.preventDefault();
 
-                alert("Movimentação será conectada ao backend em breve!");
+
+                const idUsuario =
+                    document.getElementById("usuario").value;
+
+                const idEquipamento =
+                    document.getElementById("equipamento").value;
+
+                const dataMovimentacao =
+                    document.getElementById("dataMovimentacao").value;
+
+                const tipo =
+                    document.getElementById("tipo").value;
+
+                const quantidade =
+                    document.getElementById("quantidade").value;
+
+
+                const token =
+                    localStorage.getItem("token");
+
+
+                if (!token) {
+
+                    alert("Sessão expirada. Faça login novamente.");
+
+                    window.location.href = "index.html";
+
+                    return;
+
+                }
+
+
+                const movimentacao = {
+
+                    idUsuario: parseInt(idUsuario),
+
+                    idEquipamento: parseInt(idEquipamento),
+
+                    dataMovimentacao: dataMovimentacao,
+
+                    tipo: tipo,
+
+                    quantidade: parseInt(quantidade)
+
+                };
+
+
+                console.log(
+                    "Enviando movimentação:",
+                    movimentacao
+                );
+
+
+                try {
+
+
+                    const resposta = await fetch(
+                        "http://localhost:8080/movimentacoes",
+                        {
+
+                            method: "POST",
+
+                            headers: {
+
+                                "Content-Type": "application/json",
+
+                                "Authorization":
+                                    "Bearer " + token
+
+                            },
+
+                            body:
+                                JSON.stringify(movimentacao)
+
+                        }
+                    );
+
+
+                    if (resposta.ok) {
+
+                        alert(
+                            "Movimentação cadastrada com sucesso!"
+                        );
+
+
+                        document
+                            .getElementById("movimentacaoForm")
+                            .reset();
+
+
+                        fecharMovimentacao();
+
+
+                    } else if (resposta.status === 403) {
+
+                        alert(
+                            "Acesso negado. Faça login novamente."
+                        );
+
+
+                    } else {
+
+                        const erro =
+                            await resposta.text();
+
+
+                        console.error(
+                            "Erro do backend:",
+                            erro
+                        );
+
+
+                        alert(
+                            "Erro " +
+                            resposta.status +
+                            ": " +
+                            erro
+                        );
+
+                    }
+
+
+                } catch (erro) {
+
+                    console.error(
+                        "Erro:",
+                        erro
+                    );
+
+
+                    alert(
+                        "Não foi possível conectar ao backend."
+                    );
+
+                }
 
             });
 

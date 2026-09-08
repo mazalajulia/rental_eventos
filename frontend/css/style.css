@@ -493,11 +493,11 @@ button:hover {
     font-size: 14px;
 }
 
-.page-actions {
+.page-header {
     display: flex;
     justify-content: space-between;
-    align-items: center;
-    margin-bottom: 20px;
+    align-items: flex-start;
+    margin-bottom: 25px;
 }
 
 .page-actions h3 {
