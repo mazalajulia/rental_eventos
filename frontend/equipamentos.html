@@ -8,101 +8,158 @@
     <title>Equipamentos - Rental Eventos</title>
 
     <link rel="stylesheet" href="css/style.css">
+
+    <!-- Font Awesome -->
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    >
 </head>
 
 <body>
 
-    <!-- MENU LATERAL -->
-    <aside class="sidebar">
+    <div class="dashboard">
 
-        <h2>Rental Eventos</h2>
+        <!-- MENU LATERAL -->
+        <aside class="sidebar">
 
-        <nav>
-            <a href="inicio.html">Início</a>
-            <a href="equipamentos.html" class="ativo">Equipamentos</a>
-            <a href="movimentacoes.html">Movimentações</a>
-            <a href="perfil.html">Perfil</a>
-        </nav>
+            <div class="logo">
+                <i class="fa-solid fa-calendar-days"></i>
+                <span>Rental Eventos</span>
+            </div>
 
-        <a href="index.html" class="logout">
-            Sair
-        </a>
+            <nav class="menu">
 
-    </aside>
+                <a href="inicio.html" class="menu-item">
+                    <i class="fa-solid fa-house"></i>
+                    <span>Início</span>
+                </a>
+
+                <a href="equipamentos.html" class="menu-item active">
+                    <i class="fa-solid fa-box"></i>
+                    <span>Equipamentos</span>
+                </a>
+
+                <a href="movimentacoes.html" class="menu-item">
+                    <i class="fa-solid fa-arrow-right-arrow-left"></i>
+                    <span>Movimentações</span>
+                </a>
+
+                <a href="perfil.html" class="menu-item">
+                    <i class="fa-solid fa-user"></i>
+                    <span>Meu perfil</span>
+                </a>
+
+            </nav>
+
+            <div class="sidebar-bottom">
+
+                <a href="index.html" class="menu-item logout">
+                    <i class="fa-solid fa-right-from-bracket"></i>
+                    <span>Sair</span>
+                </a>
+
+            </div>
+
+        </aside>
 
 
-    <!-- CONTEÚDO PRINCIPAL -->
-    <main class="main-content">
+        <!-- CONTEÚDO PRINCIPAL -->
+        <main class="main-content">
 
-        <!-- TOPO -->
-        <header class="topbar">
+            <!-- TOPO -->
+            <header class="topbar">
 
-            <div class="search-box">
-                <span>🔍</span>
+                <div class="search-box">
 
-                <input
-                    type="text"
-                    id="campoBusca"
-                    placeholder="Pesquisar equipamento..."
+                    <i class="fa-solid fa-magnifying-glass"></i>
+
+                    <input
+                        type="text"
+                        id="campoBusca"
+                        placeholder="Pesquisar equipamento..."
+                    >
+
+                </div>
+
+
+                <div class="profile">
+
+                    <div class="profile-icon">
+                        <i class="fa-solid fa-user"></i>
+                    </div>
+
+                    <div class="profile-info">
+                        <strong>Usuário</strong>
+                        <span>Admin</span>
+                    </div>
+
+                </div>
+
+            </header>
+
+
+            <!-- TÍTULO DA PÁGINA -->
+            <section class="page-header">
+
+                <div>
+
+                    <h1>Equipamentos</h1>
+
+                    <p>
+                        Gerencie os equipamentos disponíveis para locação.
+                    </p>
+
+                </div>
+
+
+                <button
+                    class="btn-primary"
+                    onclick="abrirFormulario()"
                 >
-            </div>
+                    <i class="fa-solid fa-plus"></i>
+                    Novo equipamento
+                </button>
 
-            <div class="perfil-topo">
-                <span>JULIA</span>
-            </div>
-
-        </header>
+            </section>
 
 
-        <!-- TÍTULO -->
-        <section class="page-header">
+            <!-- TABELA -->
+            <section class="table-container">
 
-            <div>
-                <h1>Equipamentos</h1>
-                <p>Gerencie os equipamentos disponíveis para locação.</p>
-            </div>
+                <table>
 
-            <button
-                class="btn-primary"
-                onclick="abrirFormulario()"
-            >
-                + Novo equipamento
-            </button>
+                    <thead>
 
-        </section>
+                        <tr>
+
+                            <th>ID</th>
+                            <th>Nome</th>
+                            <th>Marca</th>
+                            <th>Modelo</th>
+                            <th>Categoria</th>
+                            <th>Disponível</th>
+                            <th>Mínimo</th>
+                            <th>Ações</th>
+
+                        </tr>
+
+                    </thead>
 
 
-        <!-- TABELA -->
-        <section class="table-container">
+                    <tbody id="listaEquipamentos">
 
-            <table>
+                        <!-- Os equipamentos serão carregados pelo JavaScript -->
 
-                <thead>
+                    </tbody>
 
-                    <tr>
-                        <th>ID</th>
-                        <th>Nome</th>
-                        <th>Marca</th>
-                        <th>Modelo</th>
-                        <th>Categoria</th>
-                        <th>Disponível</th>
-                        <th>Mínimo</th>
-                        <th>Ações</th>
-                    </tr>
+                </table>
 
-                </thead>
+            </section>
 
-                <tbody id="listaEquipamentos">
+        </main>
 
-                    <!-- Os equipamentos serão carregados pelo JavaScript -->
-
-                </tbody>
-
-            </table>
-
-        </section>
-
-    </main>
+    </div>
 
 
     <!-- MODAL DE CADASTRO -->
@@ -130,6 +187,7 @@
 
             <!-- FORMULÁRIO -->
             <form id="equipamentoForm">
+
 
                 <!-- NOME -->
                 <div class="form-group">
@@ -337,10 +395,12 @@
                         Cancelar
                     </button>
 
+
                     <button
                         type="submit"
                         class="btn-primary"
                     >
+                        <i class="fa-solid fa-check"></i>
                         Cadastrar
                     </button>
 
@@ -662,6 +722,7 @@
                                     class="btn-excluir"
                                     onclick="excluirEquipamento(${equipamento.idEquipamento})"
                                 >
+                                    <i class="fa-solid fa-trash"></i>
                                     Excluir
                                 </button>
 
